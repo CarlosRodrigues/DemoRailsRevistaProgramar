@@ -1,0 +1,3028 @@
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (2.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateItems (20110714204642)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "list_id" integer, "name" varchar(255), "price" float, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110714204642')
+Migrating to CreateLists (20110714204720)
+  [1m[36mSQL (0.8ms)[0m  [1mCREATE TABLE "lists" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "priority" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110714204720')
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("items")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("lists")[0m
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/CarlosRodrigues/Sites/lista_compras/config/routes.rb:1)
+
+
+Started GET "/lists" for 127.0.0.1 at Thu Jul 14 21:48:34 +0100 2011
+  Processing by ListsController#index as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered lists/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 20ms (Views: 5.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/lists/new" for 127.0.0.1 at Thu Jul 14 21:48:35 +0100 2011
+  Processing by ListsController#new as HTML
+Rendered lists/_form.html.erb (44.4ms)
+Rendered lists/new.html.erb within layouts/application (47.8ms)
+Completed 200 OK in 55ms (Views: 51.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/lists" for 127.0.0.1 at Thu Jul 14 21:48:55 +0100 2011
+  Processing by ListsController#create as HTML
+  Parameters: {"commit"=>"Create List", "list"=>{"name"=>"Teste", "priority"=>"1", "id"=>"1"}, "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓"}
+WARNING: Can't mass-assign protected attributes: id
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "lists" ("updated_at", "created_at", "priority", "name") VALUES ('2011-07-14 20:48:55.213796', '2011-07-14 20:48:55.213796', 1, 'Teste')[0m
+Redirected to http://localhost:3000/lists/1
+Completed 302 Found in 75ms
+
+
+Started GET "/lists/1" for 127.0.0.1 at Thu Jul 14 21:48:55 +0100 2011
+  Processing by ListsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 1 LIMIT 1
+Rendered lists/show.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 15ms (Views: 10.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/lists" for 127.0.0.1 at Thu Jul 14 21:48:58 +0100 2011
+  Processing by ListsController#index as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered lists/index.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 15ms (Views: 11.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/lists/1" for 127.0.0.1 at Thu Jul 14 21:49:03 +0100 2011
+  Processing by ListsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "id"=>"1"}
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 1 LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mDELETE FROM "lists" WHERE "lists"."id" = 1[0m
+Redirected to http://localhost:3000/lists
+Completed 302 Found in 47ms
+
+
+Started GET "/lists" for 127.0.0.1 at Thu Jul 14 21:49:03 +0100 2011
+  Processing by ListsController#index as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered lists/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 0.7ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/CarlosRodrigues/Sites/lista_compras/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/CarlosRodrigues/Sites/lista_compras/config/routes.rb:1)
+
+
+Started GET "/artigos/" for 127.0.0.1 at Thu Jul 14 21:59:04 +0100 2011
+
+ActionController::RoutingError (No route matches "/artigos"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/artigos/" for 127.0.0.1 at Thu Jul 14 21:59:05 +0100 2011
+
+ActionController::RoutingError (No route matches "/artigos"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 21:59:14 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Completed   in 42ms
+
+ActionView::MissingTemplate (Missing template items/index with {:formats=>[:html], :handlers=>[:erb, :builder, :rjs, :rhtml, :rxml], :locale=>[:en, :en]} in view paths "/Users/CarlosRodrigues/Sites/lista_compras/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.4ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 21:59:31 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (1.4ms)
+Completed 200 OK in 10ms (Views: 5.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 22:06:31 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (1.6ms)
+Completed 200 OK in 9ms (Views: 5.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 22:06:32 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (1.8ms)
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 22:06:43 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (1.6ms)
+Completed 200 OK in 10ms (Views: 6.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 22:07:48 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (1.7ms)
+Completed 200 OK in 11ms (Views: 5.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:07:50 +0100 2011
+  Processing by ItemsController#new as HTML
+Completed   in 3ms
+
+ActionView::MissingTemplate (Missing template items/new with {:formats=>[:html], :handlers=>[:erb, :builder, :rjs, :rhtml, :rxml], :locale=>[:en, :en]} in view paths "/Users/CarlosRodrigues/Sites/lista_compras/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.4ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:11:02 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+ERROR: compiling _app_views_items_new_rhtml___1788684034_2183758220_0 RAISED compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:12: syntax error, unexpected '<', expecting ')'
+<% end );@output_buffer.safe_concat('
+ ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected kENSURE, expecting kEND
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:18: syntax error, unexpected $end, expecting kEND
+Function body:           def _app_views_items_new_rhtml___1788684034_2183758220_0(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "items/new";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<h3>');@output_buffer.append= ( @title );@output_buffer.safe_concat('</h3>
+
+');@output_buffer.append=  form_tag :action=> :create do @output_buffer.safe_concat('
+');@output_buffer.safe_concat('	Nome:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:name );@output_buffer.safe_concat(' <br/>
+	
+	Preço:
+	<br/>
+	');@output_buffer.append= ( text_field 
+
+<% end );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+
+<a href="/items/">Voltar</a>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:18:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:14:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:6:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:436:in `_run__2092693613__process_action__943997142__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:68:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/server.rb:213:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered items/new.rhtml within layouts/application (0.6ms)
+Completed   in 13ms
+
+ActionView::Template::Error (compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:12: syntax error, unexpected '<', expecting ')'
+<% end );@output_buffer.safe_concat('
+ ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected kENSURE, expecting kEND
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:18: syntax error, unexpected $end, expecting kEND):
+    9: 	<br/>
+    10: 	<%= text_field 
+    11: 
+    12: <% end %>
+    13: 
+    14: 
+    15: <a href="/items/">Voltar</a>
+  app/views/items/new.rhtml:18:in `compile'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.9ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:11:16 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (2.1ms)
+Completed 200 OK in 10ms (Views: 5.8ms | ActiveRecord: 0.3ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/CarlosRodrigues/Sites/lista_compras/config/routes.rb:1)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 22:12:36 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (1.5ms)
+Completed 200 OK in 23ms (Views: 5.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 22:12:37 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.2ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (1.6ms)
+Completed 200 OK in 9ms (Views: 5.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 22:12:37 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (1.7ms)
+Completed 200 OK in 10ms (Views: 5.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:12:46 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.6ms)[0m  SELECT "lists".* FROM "lists"
+ERROR: compiling _app_views_items_new_rhtml___1788684034_2183627740_0 RAISED compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected '<', expecting ')'
+<% end );@output_buffer.safe_concat('
+ ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:20: syntax error, unexpected kENSURE, expecting kEND
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22: syntax error, unexpected $end, expecting kEND
+Function body:           def _app_views_items_new_rhtml___1788684034_2183627740_0(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "items/new";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<h3>');@output_buffer.append= ( @title );@output_buffer.safe_concat('</h3>
+
+');@output_buffer.append=  form_tag :action=> :create do @output_buffer.safe_concat('
+');@output_buffer.safe_concat('	Nome:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:name );@output_buffer.safe_concat(' <br/>
+	
+	Preço:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:price );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('	
+	Quantidade:
+	<br />
+	');@output_buffer.append= ( text_field :item, :quantity
+
+<% end );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+
+<a href="/items/">Voltar</a>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:14:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:6:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:436:in `_run__2092693613__process_action__943997142__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:68:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/server.rb:213:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered items/new.rhtml within layouts/application (3.4ms)
+Completed   in 24ms
+
+ActionView::Template::Error (compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected '<', expecting ')'
+<% end );@output_buffer.safe_concat('
+ ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:20: syntax error, unexpected kENSURE, expecting kEND
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22: syntax error, unexpected $end, expecting kEND):
+    13: 	<br />
+    14: 	<%= text_field :item, :quantity
+    15: 
+    16: <% end %>
+    17: 
+    18: 
+    19: <a href="/items/">Voltar</a>
+  app/views/items/new.rhtml:22:in `compile'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.9ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:12:48 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+ERROR: compiling _app_views_items_new_rhtml___1788684034_2184449360_0 RAISED compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected '<', expecting ')'
+<% end );@output_buffer.safe_concat('
+ ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:20: syntax error, unexpected kENSURE, expecting kEND
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22: syntax error, unexpected $end, expecting kEND
+Function body:           def _app_views_items_new_rhtml___1788684034_2184449360_0(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "items/new";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<h3>');@output_buffer.append= ( @title );@output_buffer.safe_concat('</h3>
+
+');@output_buffer.append=  form_tag :action=> :create do @output_buffer.safe_concat('
+');@output_buffer.safe_concat('	Nome:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:name );@output_buffer.safe_concat(' <br/>
+	
+	Preço:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:price );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('	
+	Quantidade:
+	<br />
+	');@output_buffer.append= ( text_field :item, :quantity
+
+<% end );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+
+<a href="/items/">Voltar</a>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:14:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:6:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:436:in `_run__2092693613__process_action__943997142__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:68:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/server.rb:213:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered items/new.rhtml within layouts/application (0.7ms)
+Completed   in 9ms
+
+ActionView::Template::Error (compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected '<', expecting ')'
+<% end );@output_buffer.safe_concat('
+ ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:20: syntax error, unexpected kENSURE, expecting kEND
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22: syntax error, unexpected $end, expecting kEND):
+    13: 	<br />
+    14: 	<%= text_field :item, :quantity
+    15: 
+    16: <% end %>
+    17: 
+    18: 
+    19: <a href="/items/">Voltar</a>
+  app/views/items/new.rhtml:22:in `compile'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.4ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:13:37 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+ERROR: compiling _app_views_items_new_rhtml___1788684034_2183507100_0 RAISED compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected kEND, expecting ')'
+'); end 
+       ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:20: syntax error, unexpected kENSURE, expecting ')'
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22: syntax error, unexpected kEND, expecting ')'
+Function body:           def _app_views_items_new_rhtml___1788684034_2183507100_0(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "items/new";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<h3>');@output_buffer.append= ( @title );@output_buffer.safe_concat('</h3>
+
+');@output_buffer.append=  form_tag :action=> :create do @output_buffer.safe_concat('
+');@output_buffer.safe_concat('	Nome:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:name );@output_buffer.safe_concat(' <br/>
+	
+	Preço:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:price );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('	
+	Lista:
+	<br />
+	');@output_buffer.append= ( select (:item,:list_id,@lists.collect { |lista| [lista.name, lista.id]} );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+'); end 
+@output_buffer.safe_concat('
+
+<a href="/items/">Voltar</a>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:14:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:6:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:436:in `_run__2092693613__process_action__943997142__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:68:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/server.rb:213:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered items/new.rhtml within layouts/application (0.7ms)
+Completed   in 10ms
+
+ActionView::Template::Error (compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected kEND, expecting ')'
+'); end 
+       ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:20: syntax error, unexpected kENSURE, expecting ')'
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22: syntax error, unexpected kEND, expecting ')'):
+    13: 	<br />
+    14: 	<%= select (:item,:list_id,@lists.collect { |lista| [lista.name, lista.id]} %>
+    15: 
+    16: <% end %>
+    17: 
+    18: 
+    19: <a href="/items/">Voltar</a>
+  app/views/items/new.rhtml:22:in `compile'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.7ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:13:38 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.4ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+ERROR: compiling _app_views_items_new_rhtml___1788684034_2182757880_0 RAISED compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected kEND, expecting ')'
+'); end 
+       ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:20: syntax error, unexpected kENSURE, expecting ')'
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22: syntax error, unexpected kEND, expecting ')'
+Function body:           def _app_views_items_new_rhtml___1788684034_2182757880_0(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "items/new";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<h3>');@output_buffer.append= ( @title );@output_buffer.safe_concat('</h3>
+
+');@output_buffer.append=  form_tag :action=> :create do @output_buffer.safe_concat('
+');@output_buffer.safe_concat('	Nome:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:name );@output_buffer.safe_concat(' <br/>
+	
+	Preço:
+	<br/>
+	');@output_buffer.append= ( text_field :item,:price );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('	
+	Lista:
+	<br />
+	');@output_buffer.append= ( select (:item,:list_id,@lists.collect { |lista| [lista.name, lista.id]} );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+'); end 
+@output_buffer.safe_concat('
+
+<a href="/items/">Voltar</a>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:14:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/implicit_render.rb:6:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:436:in `_run__2092693613__process_action__943997142__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:68:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.2/lib/rack/server.rb:213:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered items/new.rhtml within layouts/application (0.7ms)
+Completed   in 9ms
+
+ActionView::Template::Error (compile error
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:16: syntax error, unexpected kEND, expecting ')'
+'); end 
+       ^
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:20: syntax error, unexpected kENSURE, expecting ')'
+/Users/CarlosRodrigues/Sites/lista_compras/app/views/items/new.rhtml:22: syntax error, unexpected kEND, expecting ')'):
+    13: 	<br />
+    14: 	<%= select (:item,:list_id,@lists.collect { |lista| [lista.name, lista.id]} %>
+    15: 
+    16: <% end %>
+    17: 
+    18: 
+    19: <a href="/items/">Voltar</a>
+  app/views/items/new.rhtml:22:in `compile'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (42.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (52.0ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:14:03 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (3.1ms)
+Completed 200 OK in 11ms (Views: 6.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists/new" for 127.0.0.1 at Thu Jul 14 22:14:09 +0100 2011
+  Processing by ListsController#new as HTML
+Rendered lists/_form.html.erb (44.8ms)
+Rendered lists/new.html.erb within layouts/application (47.7ms)
+Completed 200 OK in 56ms (Views: 51.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/lists" for 127.0.0.1 at Thu Jul 14 22:14:18 +0100 2011
+  Processing by ListsController#create as HTML
+  Parameters: {"commit"=>"Create List", "list"=>{"name"=>"Supermercado", "priority"=>"1", "id"=>"1"}, "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓"}
+WARNING: Can't mass-assign protected attributes: id
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "lists" ("priority", "updated_at", "name", "created_at") VALUES (1, '2011-07-14 21:14:18.579209', 'Supermercado', '2011-07-14 21:14:18.579209')
+Redirected to http://localhost:3000/lists/2
+Completed 302 Found in 15ms
+
+
+Started GET "/lists/2" for 127.0.0.1 at Thu Jul 14 22:14:18 +0100 2011
+  Processing by ListsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered lists/show.html.erb within layouts/application (37.3ms)
+Completed 200 OK in 47ms (Views: 41.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/lists" for 127.0.0.1 at Thu Jul 14 22:14:22 +0100 2011
+  Processing by ListsController#index as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered lists/index.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 17ms (Views: 12.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/lists/new" for 127.0.0.1 at Thu Jul 14 22:14:24 +0100 2011
+  Processing by ListsController#new as HTML
+Rendered lists/_form.html.erb (51.7ms)
+Rendered lists/new.html.erb within layouts/application (54.6ms)
+Completed 200 OK in 64ms (Views: 59.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/lists" for 127.0.0.1 at Thu Jul 14 22:14:29 +0100 2011
+  Processing by ListsController#create as HTML
+  Parameters: {"commit"=>"Create List", "list"=>{"name"=>"Música", "priority"=>"3", "id"=>"1"}, "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓"}
+WARNING: Can't mass-assign protected attributes: id
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "lists" ("created_at", "updated_at", "name", "priority") VALUES ('2011-07-14 21:14:29.975494', '2011-07-14 21:14:29.975494', 'Música', 3)[0m
+Redirected to http://localhost:3000/lists/3
+Completed 302 Found in 11ms
+
+
+Started GET "/lists/3" for 127.0.0.1 at Thu Jul 14 22:14:30 +0100 2011
+  Processing by ListsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered lists/show.html.erb within layouts/application (45.9ms)
+Completed 200 OK in 56ms (Views: 49.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/lists/3/edit" for 127.0.0.1 at Thu Jul 14 22:14:31 +0100 2011
+  Processing by ListsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+Rendered lists/_form.html.erb (9.2ms)
+Rendered lists/edit.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 21ms (Views: 16.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/lists" for 127.0.0.1 at Thu Jul 14 22:14:33 +0100 2011
+  Processing by ListsController#index as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered lists/index.html.erb within layouts/application (44.7ms)
+Completed 200 OK in 53ms (Views: 48.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:14:46 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered items/new.rhtml within layouts/application (6.7ms)
+Completed 200 OK in 15ms (Views: 10.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:14:54 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (47.4ms)
+Completed 200 OK in 56ms (Views: 51.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:15:18 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered items/new.rhtml within layouts/application (6.3ms)
+Completed 200 OK in 15ms (Views: 10.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:15:20 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"", "price"=>"", "list_id"=>"2"}}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "items" ("name", "list_id", "updated_at", "price", "created_at") VALUES ('', 2, '2011-07-14 21:15:20.330009', NULL, '2011-07-14 21:15:20.330009')
+Redirected to http://localhost:3000/items
+Completed 302 Found in 12ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:15:20 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (17.8ms)
+Completed 200 OK in 26ms (Views: 21.5ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:15:34 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1", "list_id"=>"2"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("updated_at", "price", "list_id", "created_at", "name") VALUES ('2011-07-14 21:15:34.184631', 1.0, 2, '2011-07-14 21:15:34.184631', 'Arroz')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 12ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:15:34 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (16.6ms)
+Completed 200 OK in 24ms (Views: 19.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/items/edit/2" for 127.0.0.1 at Thu Jul 14 22:15:38 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 3ms
+
+RangeError (integer 2183711340 too big to convert to `int'):
+  app/controllers/items_controller.rb:33:in `<<'
+  app/controllers/items_controller.rb:33:in `edit'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:15:40 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 3ms
+
+RangeError (integer 2183735780 too big to convert to `int'):
+  app/controllers/items_controller.rb:43:in `<<'
+  app/controllers/items_controller.rb:43:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.7ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:16:06 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 3ms
+
+RangeError (integer 2182965320 too big to convert to `int'):
+  app/controllers/items_controller.rb:43:in `<<'
+  app/controllers/items_controller.rb:43:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:16:07 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 4ms
+
+RangeError (integer 2184639700 too big to convert to `int'):
+  app/controllers/items_controller.rb:43:in `<<'
+  app/controllers/items_controller.rb:43:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.3ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:16:19 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 3ms
+
+RangeError (integer 2183782400 too big to convert to `int'):
+  app/controllers/items_controller.rb:43:in `<<'
+  app/controllers/items_controller.rb:43:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.7ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:16:20 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 4ms
+
+RangeError (integer 2183055860 too big to convert to `int'):
+  app/controllers/items_controller.rb:43:in `<<'
+  app/controllers/items_controller.rb:43:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:16:39 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 3ms
+
+ArgumentError (Unknown key(s): condition):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:16:47 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 3ms
+
+ArgumentError (Unknown key(s): condition):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:16:48 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 4ms
+
+ArgumentError (Unknown key(s): condition):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.7ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:16:49 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 3ms
+
+ArgumentError (Unknown key(s): condition):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.3ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:17:40 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 3ms
+
+NoMethodError (undefined method `assert_valid_keys' for "id=2":String):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:17:53 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 4ms
+
+NoMethodError (undefined method `assert_valid_keys' for "id=\002":String):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (46.8ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:17:54 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 4ms
+
+NoMethodError (undefined method `assert_valid_keys' for "id=\002":String):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.0ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:17:55 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+Completed   in 4ms
+
+NoMethodError (undefined method `assert_valid_keys' for "id=\002":String):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started GET "/items/destroy/2" for 127.0.0.1 at Thu Jul 14 22:18:13 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 2 LIMIT 1[0m
+  [1m[35mAREL (1.7ms)[0m  DELETE FROM "items" WHERE "items"."id" = 2
+Redirected to http://localhost:3000/items
+Completed 302 Found in 34ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:18:13 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (14.6ms)
+Completed 200 OK in 22ms (Views: 18.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/items/destroy/1" for 127.0.0.1 at Thu Jul 14 22:18:14 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (2.4ms)[0m  DELETE FROM "items" WHERE "items"."id" = 1
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:18:14 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (1.6ms)
+Completed 200 OK in 9ms (Views: 5.1ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:18:16 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (6.2ms)
+Completed 200 OK in 15ms (Views: 10.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:18:20 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"2", "list_id"=>"2"}}
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "items" ("created_at", "updated_at", "name", "price", "list_id") VALUES ('2011-07-14 21:18:20.826056', '2011-07-14 21:18:20.826056', 'Arroz', 2.0, 2)[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 49ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:18:20 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (16.1ms)
+Completed 200 OK in 24ms (Views: 19.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:18:22 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (42.7ms)
+Completed 200 OK in 51ms (Views: 46.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:18:32 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Led Zeppelin", "price"=>"15", "list_id"=>"3"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("list_id", "created_at", "name", "updated_at", "price") VALUES (3, '2011-07-14 21:18:32.405659', 'Led Zeppelin', '2011-07-14 21:18:32.405659', 15.0)[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:18:32 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (56.4ms)
+Completed 200 OK in 64ms (Views: 59.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:18:34 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered items/new.rhtml within layouts/application (6.4ms)
+Completed 200 OK in 15ms (Views: 10.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:18:43 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Cerveja", "price"=>"1", "list_id"=>"2"}}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "items" ("name", "price", "list_id", "updated_at", "created_at") VALUES ('Cerveja', 1.0, 2, '2011-07-14 21:18:43.738275', '2011-07-14 21:18:43.738275')
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:18:43 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (15.8ms)
+Completed 200 OK in 68ms (Views: 19.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:18:46 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered items/new.rhtml within layouts/application (7.0ms)
+Completed 200 OK in 16ms (Views: 11.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:19:28 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Iron Maiden - Fear of the dark", "price"=>"17", "list_id"=>"2"}}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "items" ("price", "created_at", "name", "list_id", "updated_at") VALUES (17.0, '2011-07-14 21:19:28.762345', 'Iron Maiden - Fear of the dark', 2, '2011-07-14 21:19:28.762345')
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:19:28 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (19.9ms)
+Completed 200 OK in 28ms (Views: 23.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/items/destroy/4" for 127.0.0.1 at Thu Jul 14 22:19:31 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 4 LIMIT 1
+  [1m[36mAREL (1.8ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 4[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:19:31 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (19.0ms)
+Completed 200 OK in 27ms (Views: 22.6ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:19:33 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (6.8ms)
+Completed 200 OK in 52ms (Views: 10.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:20:08 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Led Zeppelin - Houses of the Holy", "price"=>"15", "list_id"=>"2"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("list_id", "updated_at", "created_at", "name", "price") VALUES (2, '2011-07-14 21:20:08.365023', '2011-07-14 21:20:08.365023', 'Led Zeppelin - Houses of the Holy', 15.0)[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 13ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:20:08 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (54.4ms)
+Completed 200 OK in 63ms (Views: 58.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/items/edit/3" for 127.0.0.1 at Thu Jul 14 22:20:13 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=3) LIMIT 1[0m
+Completed   in 7ms
+
+ActionView::MissingTemplate (Missing template items/edit with {:formats=>[:html], :handlers=>[:erb, :builder, :rjs, :rhtml, :rxml], :locale=>[:en, :en]} in view paths "/Users/CarlosRodrigues/Sites/lista_compras/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.5ms)
+
+
+Started GET "/items/edit/3" for 127.0.0.1 at Thu Jul 14 22:27:02 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE (id=3) LIMIT 1
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2183160600_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (6.2ms)
+Completed   in 14ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.collect):
+    12: 	
+    13: 	Lista:
+    14: 	<br />
+    15: 	<%= f.select (:list_id,@lists.collect { |lista| [lista.name, lista.id]}) %> <br/>
+    16: 	<%= submit_tag "Guardar" %>
+    17: 
+    18: <% end %>
+  app/views/items/edit.rhtml:15:in `_app_views_items_edit_rhtml___1544162212_2183160600_0'
+  app/views/items/edit.rhtml:4:in `_app_views_items_edit_rhtml___1544162212_2183160600_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.1ms)
+
+
+Started GET "/items/edit/3" for 127.0.0.1 at Thu Jul 14 22:27:03 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=3) LIMIT 1[0m
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2183953920_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (5.5ms)
+Completed   in 13ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.collect):
+    12: 	
+    13: 	Lista:
+    14: 	<br />
+    15: 	<%= f.select (:list_id,@lists.collect { |lista| [lista.name, lista.id]}) %> <br/>
+    16: 	<%= submit_tag "Guardar" %>
+    17: 
+    18: <% end %>
+  app/views/items/edit.rhtml:15:in `_app_views_items_edit_rhtml___1544162212_2183953920_0'
+  app/views/items/edit.rhtml:4:in `_app_views_items_edit_rhtml___1544162212_2183953920_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.9ms)
+
+
+Started GET "/items/edit/3" for 127.0.0.1 at Thu Jul 14 22:27:34 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE (id=3) LIMIT 1
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2182922400_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (44.8ms)
+Completed 200 OK in 53ms (Views: 48.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:27:39 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"3"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("updated_at", "created_at", "list_id", "price", "name") VALUES ('2011-07-14 21:27:39.815270', '2011-07-14 21:27:39.815270', NULL, 3.0, 'Arroz')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:27:39 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (45.3ms)
+Completed   in 53ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2183320320_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2183320320_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.8ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:27:47 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (4.5ms)
+Completed   in 12ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2183496920_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2183496920_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.5ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:28:09 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+Completed   in 3ms
+
+NoMethodError (undefined method `references' for #<Class:0x10465e4b0>):
+  app/models/item.rb:2
+  app/controllers/items_controller.rb:5:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.6ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:28:09 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Completed   in 4ms
+
+NoMethodError (undefined method `references' for #<Class:0x1044b0c08>):
+  app/models/item.rb:2
+  app/controllers/items_controller.rb:5:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.0ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:28:20 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (42.1ms)
+Completed   in 50ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2182732560_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2182732560_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.7ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:28:21 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (4.9ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2183659500_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2183659500_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.6ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:28:21 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (5.4ms)
+Completed   in 50ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2184649820_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2184649820_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.6ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:28:22 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (4.7ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2183469200_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2183469200_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (46.1ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/CarlosRodrigues/Sites/lista_compras/config/routes.rb:1)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:29:12 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (8.4ms)
+Completed   in 31ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191475520_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191475520_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.8ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:29:12 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (36.7ms)
+Completed   in 46ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2190617300_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2190617300_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.0ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:29:13 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (4.7ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191075240_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191075240_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.9ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:29:13 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (4.7ms)
+Completed   in 47ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191939620_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191939620_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.9ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:29:14 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (6.7ms)
+Completed   in 15ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2190878380_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2190878380_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (40.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (44.8ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:29:14 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (4.7ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191517860_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191517860_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.2ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:29:36 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (41.5ms)
+Completed 200 OK in 50ms (Views: 45.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:29:55 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (48.1ms)
+Completed 200 OK in 56ms (Views: 51.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/items/destroy/8" for 127.0.0.1 at Thu Jul 14 22:30:16 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 8 LIMIT 1
+  [1m[36mAREL (1.5ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 8[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 14ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:30:16 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (49.4ms)
+Completed 200 OK in 57ms (Views: 53.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:30:38 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.5ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (59.4ms)
+Completed 200 OK in 70ms (Views: 63.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/items/destroy/6" for 127.0.0.1 at Thu Jul 14 22:30:46 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 6 LIMIT 1
+  [1m[36mAREL (2.4ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 6[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:30:46 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (55.8ms)
+Completed 200 OK in 63ms (Views: 59.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/items/destroy/7" for 127.0.0.1 at Thu Jul 14 22:30:47 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 7 LIMIT 1
+  [1m[36mAREL (2.4ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 7[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 12ms
+
+
+Started GET "/items/destroy/7" for 127.0.0.1 at Thu Jul 14 22:30:47 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 7 LIMIT 1
+Completed   in 4ms
+
+ActiveRecord::RecordNotFound (Couldn't find Item with ID=7):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (50.8ms)
+
+
+Started GET "/items/destroy/7" for 127.0.0.1 at Thu Jul 14 22:30:49 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 7 LIMIT 1[0m
+Completed   in 5ms
+
+ActiveRecord::RecordNotFound (Couldn't find Item with ID=7):
+  app/controllers/items_controller.rb:44:in `destroy'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:30:51 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (54.2ms)
+Completed 200 OK in 62ms (Views: 57.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/destroy/3" for 127.0.0.1 at Thu Jul 14 22:30:53 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 3 LIMIT 1[0m
+  [1m[35mAREL (2.3ms)[0m  DELETE FROM "items" WHERE "items"."id" = 3
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:30:53 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (18.4ms)
+Completed 200 OK in 70ms (Views: 22.1ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/items/destroy/5" for 127.0.0.1 at Thu Jul 14 22:30:54 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 5 LIMIT 1[0m
+  [1m[35mAREL (2.2ms)[0m  DELETE FROM "items" WHERE "items"."id" = 5
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:30:54 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (1.7ms)
+Completed 200 OK in 9ms (Views: 5.2ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:30:55 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (10.0ms)
+Completed 200 OK in 18ms (Views: 13.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:31:01 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Iron Maiden - Fear of the dark", "price"=>"15", "list_id"=>"3"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("updated_at", "price", "created_at", "name", "list_id") VALUES ('2011-07-14 21:31:01.300641', 15.0, '2011-07-14 21:31:01.300641', 'Iron Maiden - Fear of the dark', 3)[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 14ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:31:01 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (18.5ms)
+Completed 200 OK in 26ms (Views: 21.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:31:03 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.4ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (38.7ms)
+Completed 200 OK in 47ms (Views: 42.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:31:10 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Led Zeppelin", "price"=>"15", "list_id"=>"3"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("price", "list_id", "created_at", "name", "updated_at") VALUES (15.0, 3, '2011-07-14 21:31:10.462968', 'Led Zeppelin', '2011-07-14 21:31:10.462968')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:31:10 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (60.4ms)
+Completed 200 OK in 68ms (Views: 63.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:31:12 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered items/new.rhtml within layouts/application (6.8ms)
+Completed 200 OK in 15ms (Views: 10.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:31:17 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1", "list_id"=>"2"}}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "items" ("name", "price", "updated_at", "created_at", "list_id") VALUES ('Arroz', 1.0, '2011-07-14 21:31:17.088131', '2011-07-14 21:31:17.088131', 2)
+Redirected to http://localhost:3000/items
+Completed 302 Found in 53ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:31:17 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (53.0ms)
+Completed 200 OK in 61ms (Views: 56.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:31:18 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered items/new.rhtml within layouts/application (6.6ms)
+Completed 200 OK in 15ms (Views: 10.4ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:31:24 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Cerveja", "price"=>"2", "list_id"=>"2"}}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "items" ("created_at", "price", "list_id", "name", "updated_at") VALUES ('2011-07-14 21:31:24.712838', 2.0, 2, 'Cerveja', '2011-07-14 21:31:24.712838')
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:31:24 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (53.7ms)
+Completed 200 OK in 62ms (Views: 56.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:31:32 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (17.3ms)
+Completed 200 OK in 26ms (Views: 21.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/edit/11" for 127.0.0.1 at Thu Jul 14 22:31:34 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=11) LIMIT 1[0m
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191560860_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (7.2ms)
+Completed 200 OK in 15ms (Views: 11.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:31:37 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1.0"}}
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "items" ("updated_at", "name", "list_id", "created_at", "price") VALUES ('2011-07-14 21:31:37.336326', 'Arroz', NULL, '2011-07-14 21:31:37.336326', 1.0)
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:31:37 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (5.0ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191929380_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191929380_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.3ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:31:39 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (4.8ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2190791340_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2190791340_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (41.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (45.3ms)
+
+
+Started GET "/items/edit/11" for 127.0.0.1 at Thu Jul 14 22:32:07 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=11) LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191372580_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (10.7ms)
+Completed 200 OK in 23ms (Views: 14.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:32:10 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1.0", "list_id"=>"2"}}
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "items" ("updated_at", "list_id", "created_at", "price", "name") VALUES ('2011-07-14 21:32:10.328550', 2, '2011-07-14 21:32:10.328550', 1.0, 'Arroz')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:32:10 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (4.7ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191146360_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191146360_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.2ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:32:11 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (4.9ms)
+Completed   in 46ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191933700_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191933700_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.8ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:32:12 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (4.5ms)
+Completed   in 12ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2190801420_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2190801420_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (43.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (47.8ms)
+
+
+Started GET "/items/edit/11" for 127.0.0.1 at Thu Jul 14 22:32:16 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=11) LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191435980_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (10.7ms)
+Completed 200 OK in 23ms (Views: 14.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/items/edit/11" for 127.0.0.1 at Thu Jul 14 22:32:18 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=11) LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191532900_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (11.1ms)
+Completed 200 OK in 24ms (Views: 14.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:32:29 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1.0", "list_id"=>"2"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("updated_at", "price", "created_at", "list_id", "name") VALUES ('2011-07-14 21:32:29.609541', 1.0, '2011-07-14 21:32:29.609541', 2, 'Arroz')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:32:29 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (5.3ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191750800_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191750800_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.3ms)
+
+
+Started GET "/items/deleteall" for 127.0.0.1 at Thu Jul 14 22:33:22 +0100 2011
+
+AbstractController::ActionNotFound (The action 'deleteall' could not be found for ItemsController):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.8ms)
+
+
+Started GET "/items/destroyall" for 127.0.0.1 at Thu Jul 14 22:33:30 +0100 2011
+  Processing by ItemsController#destroyall as HTML
+  [1m[36mAREL (0.6ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 'all'[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 5ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:33:30 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (4.6ms)
+Completed   in 53ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191946020_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191946020_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.0ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:34:03 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (4.7ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2190843020_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2190843020_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (39.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (43.7ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:34:04 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.6ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (4.9ms)
+Completed   in 13ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    24: 				<%= item.price%>
+    25: 			</td>
+    26: 			<td>
+    27: 				<%= item.list.name%>
+    28: 			</td>
+    29: 			<td>
+    30: 				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+  app/views/items/index.rhtml:27:in `_app_views_items_index_rhtml__1542899460_2191529660_0'
+  app/views/items/index.rhtml:18:in `each'
+  app/views/items/index.rhtml:18:in `_app_views_items_index_rhtml__1542899460_2191529660_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.0ms)
+
+
+Started GET "/items/destroyall" for 127.0.0.1 at Thu Jul 14 22:34:08 +0100 2011
+  Processing by ItemsController#destroyall as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items"[0m
+  [1m[35mAREL (2.0ms)[0m  DELETE FROM "items" WHERE "items"."id" = 9
+  [1m[36mAREL (1.2ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 10[0m
+  [1m[35mAREL (0.9ms)[0m  DELETE FROM "items" WHERE "items"."id" = 11
+  [1m[36mAREL (1.0ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 12[0m
+  [1m[35mAREL (1.0ms)[0m  DELETE FROM "items" WHERE "items"."id" = 13
+  [1m[36mAREL (0.8ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 14[0m
+  [1m[35mAREL (1.0ms)[0m  DELETE FROM "items" WHERE "items"."id" = 15
+Completed   in 21ms
+
+ActionView::MissingTemplate (Missing template items/destroyall with {:formats=>[:html], :handlers=>[:erb, :builder, :rjs, :rhtml, :rxml], :locale=>[:en, :en]} in view paths "/Users/CarlosRodrigues/Sites/lista_compras/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (40.5ms)
+
+
+Started GET "/items/destroyall" for 127.0.0.1 at Thu Jul 14 22:34:10 +0100 2011
+  Processing by ItemsController#destroyall as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items"[0m
+Completed   in 7ms
+
+ActionView::MissingTemplate (Missing template items/destroyall with {:formats=>[:html], :handlers=>[:erb, :builder, :rjs, :rhtml, :rxml], :locale=>[:en, :en]} in view paths "/Users/CarlosRodrigues/Sites/lista_compras/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.4ms)
+
+
+Started GET "/items/destroyall" for 127.0.0.1 at Thu Jul 14 22:34:20 +0100 2011
+  Processing by ItemsController#destroyall as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items"
+Redirected to http://localhost:3000/items
+Completed 302 Found in 5ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:34:20 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (1.5ms)
+Completed 200 OK in 10ms (Views: 5.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:34:21 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (6.5ms)
+Completed 200 OK in 15ms (Views: 10.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:34:25 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1", "list_id"=>"2"}}
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "items" ("updated_at", "name", "price", "list_id", "created_at") VALUES ('2011-07-14 21:34:25.949397', 'Arroz', 1.0, 2, '2011-07-14 21:34:25.949397')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:34:25 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (50.2ms)
+Completed 200 OK in 58ms (Views: 53.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/edit/16" for 127.0.0.1 at Thu Jul 14 22:34:27 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE (id=16) LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191217720_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (10.9ms)
+Completed 200 OK in 23ms (Views: 14.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:34:28 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1.0", "list_id"=>"2"}}
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "items" ("updated_at", "name", "created_at", "list_id", "price") VALUES ('2011-07-14 21:34:28.983648', 'Arroz', '2011-07-14 21:34:28.983648', 2, 1.0)
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:34:28 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (19.0ms)
+Completed 200 OK in 27ms (Views: 22.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/edit/17" for 127.0.0.1 at Thu Jul 14 22:34:30 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"17"}
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE (id=17) LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191838820_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (10.9ms)
+Completed 200 OK in 23ms (Views: 14.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:34:34 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1.0", "list_id"=>"3"}}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "items" ("list_id", "updated_at", "price", "created_at", "name") VALUES (3, '2011-07-14 21:34:34.746059', 1.0, '2011-07-14 21:34:34.746059', 'Arroz')
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:34:34 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.4ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (16.5ms)
+Completed 200 OK in 66ms (Views: 19.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:35:10 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (45.4ms)
+Completed 200 OK in 53ms (Views: 48.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/items/edit/17" for 127.0.0.1 at Thu Jul 14 22:35:11 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=17) LIMIT 1[0m
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2190930480_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (52.0ms)
+Completed 200 OK in 65ms (Views: 56.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/items/edit/17" for 127.0.0.1 at Thu Jul 14 22:35:56 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=17) LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191322100_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (11.0ms)
+Completed 200 OK in 23ms (Views: 14.6ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:36:00 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1.0", "list_id"=>"2"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("price", "list_id", "created_at", "name", "updated_at") VALUES (1.0, 2, '2011-07-14 21:36:00.876338', 'Arroz', '2011-07-14 21:36:00.876338')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:36:00 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (48.0ms)
+Completed 200 OK in 56ms (Views: 51.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/items/destroy/18" for 127.0.0.1 at Thu Jul 14 22:36:02 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 18 LIMIT 1[0m
+  [1m[35mAREL (1.5ms)[0m  DELETE FROM "items" WHERE "items"."id" = 18
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:36:02 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (18.0ms)
+Completed 200 OK in 26ms (Views: 21.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/items/destroy/19" for 127.0.0.1 at Thu Jul 14 22:36:03 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 19 LIMIT 1[0m
+  [1m[35mAREL (1.3ms)[0m  DELETE FROM "items" WHERE "items"."id" = 19
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:36:03 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (16.1ms)
+Completed 200 OK in 24ms (Views: 19.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/items/destroy/17" for 127.0.0.1 at Thu Jul 14 22:36:04 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"17"}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 17 LIMIT 1
+  [1m[36mAREL (2.4ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 17[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:36:04 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (18.0ms)
+Completed 200 OK in 26ms (Views: 21.4ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/items/edit/16" for 127.0.0.1 at Thu Jul 14 22:36:05 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" WHERE (id=16) LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191855120_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (11.0ms)
+Completed 200 OK in 63ms (Views: 14.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:36:06 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Arroz", "price"=>"1.0", "list_id"=>"2"}}
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "items" ("updated_at", "created_at", "list_id", "name", "price") VALUES ('2011-07-14 21:36:06.507129', '2011-07-14 21:36:06.507129', 2, 'Arroz', 1.0)
+Redirected to http://localhost:3000/items
+Completed 302 Found in 23ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:36:06 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (15.1ms)
+Completed 200 OK in 65ms (Views: 18.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/destroy/16" for 127.0.0.1 at Thu Jul 14 22:36:07 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"16"}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 16 LIMIT 1
+  [1m[36mAREL (1.3ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 16[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:36:07 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (54.7ms)
+Completed 200 OK in 63ms (Views: 58.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/items/destroy/20" for 127.0.0.1 at Thu Jul 14 22:36:08 +0100 2011
+  Processing by ItemsController#destroy as HTML
+  Parameters: {"id"=>"20"}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 20 LIMIT 1
+  [1m[36mAREL (1.9ms)[0m  [1mDELETE FROM "items" WHERE "items"."id" = 20[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:36:08 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+Rendered items/index.rhtml within layouts/application (2.3ms)
+Completed 200 OK in 13ms (Views: 8.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:36:09 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[36mList Load (0.3ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+Rendered items/new.rhtml within layouts/application (6.2ms)
+Completed 200 OK in 15ms (Views: 10.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:36:36 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (6.7ms)
+Completed 200 OK in 15ms (Views: 10.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/" for 127.0.0.1 at Thu Jul 14 22:36:38 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+Rendered items/index.rhtml within layouts/application (1.6ms)
+Completed 200 OK in 9ms (Views: 5.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:36:40 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (6.3ms)
+Completed 200 OK in 15ms (Views: 9.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:36:42 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"1231", "price"=>"1231", "list_id"=>"2"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("name", "price", "list_id", "updated_at", "created_at") VALUES ('1231', 1231.0, 2, '2011-07-14 21:36:42.698953', '2011-07-14 21:36:42.698953')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:36:42 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (14.8ms)
+Completed 200 OK in 23ms (Views: 18.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/items/edit/21" for 127.0.0.1 at Thu Jul 14 22:36:43 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"21"}
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE (id=21) LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191021740_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (42.9ms)
+Completed 200 OK in 55ms (Views: 46.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:36:45 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"1231", "price"=>"1231.0", "list_id"=>"2"}}
+Completed   in 4ms
+
+ArgumentError (Unknown key(s): price, name, list_id):
+  app/controllers/items_controller.rb:38:in `update'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.4ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:40:02 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"1231", "price"=>"1231.0", "list_id"=>"2"}}
+Completed   in 4ms
+
+NoMethodError (undefined method `[]' for :item:Symbol):
+  app/controllers/items_controller.rb:38:in `update'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.2ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:42:20 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"1231", "price"=>"1231.0", "list_id"=>"2"}}
+Completed   in 4ms
+
+ActiveRecord::RecordNotFound (Couldn't find Item without an ID):
+  app/controllers/items_controller.rb:38:in `update'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.8ms)
+
+
+Started GET "/items/edit/21" for 127.0.0.1 at Thu Jul 14 22:42:25 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"21"}
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE (id=21) LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2190751380_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (45.7ms)
+Completed 200 OK in 58ms (Views: 49.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/items/update" for 127.0.0.1 at Thu Jul 14 22:42:26 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"1231", "price"=>"1231.0", "list_id"=>"2"}}
+Completed   in 4ms
+
+ActiveRecord::RecordNotFound (Couldn't find Item without an ID):
+  app/controllers/items_controller.rb:38:in `update'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.3ms)
+
+
+Started GET "/items/update/21" for 127.0.0.1 at Thu Jul 14 22:42:30 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"id"=>"21"}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 21 LIMIT 1
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:42:30 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (14.9ms)
+Completed 200 OK in 23ms (Views: 18.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:42:55 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+Rendered items/index.rhtml within layouts/application (54.1ms)
+Completed 200 OK in 63ms (Views: 58.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/items/edit/21" for 127.0.0.1 at Thu Jul 14 22:42:56 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=21) LIMIT 1[0m
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191001460_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (49.8ms)
+Completed 200 OK in 63ms (Views: 54.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/items/update/21" for 127.0.0.1 at Thu Jul 14 22:42:57 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "id"=>"21", "item"=>{"name"=>"1231", "price"=>"1231.0", "list_id"=>"2"}}
+  [1m[36mItem Load (0.2ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 21 LIMIT 1[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:42:57 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (51.9ms)
+Completed 200 OK in 60ms (Views: 55.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/items/edit/21" for 127.0.0.1 at Thu Jul 14 22:42:59 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"21"}
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" WHERE (id=21) LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191162400_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (10.8ms)
+Completed 200 OK in 23ms (Views: 14.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/items/update/21" for 127.0.0.1 at Thu Jul 14 22:43:07 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "id"=>"21", "item"=>{"name"=>"Arroz", "price"=>"2", "list_id"=>"2"}}
+  [1m[35mItem Load (0.1ms)[0m  SELECT "items".* FROM "items" WHERE "items"."id" = 21 LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mUPDATE "items" SET "price" = 2.0, "name" = 'Arroz', "updated_at" = '2011-07-14 21:43:07.743618' WHERE "items"."id" = 21[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 12ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:43:07 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (17.0ms)
+Completed 200 OK in 25ms (Views: 20.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:43:08 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (7.0ms)
+Completed 200 OK in 15ms (Views: 10.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:43:15 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Iron Maiden - Fear of the dark", "price"=>"17", "list_id"=>"3"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("updated_at", "created_at", "name", "price", "list_id") VALUES ('2011-07-14 21:43:15.100666', '2011-07-14 21:43:15.100666', 'Iron Maiden - Fear of the dark', 17.0, 3)[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 11ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:43:15 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (56.3ms)
+Completed 200 OK in 65ms (Views: 60.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/items/edit/22" for 127.0.0.1 at Thu Jul 14 22:43:16 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=22) LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191195940_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (11.0ms)
+Completed 200 OK in 23ms (Views: 14.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/items/update/22" for 127.0.0.1 at Thu Jul 14 22:43:19 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "id"=>"22", "item"=>{"name"=>"Iron Maiden - Fear of the dark", "price"=>"16.0", "list_id"=>"3"}}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 22 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "items" SET "updated_at" = '2011-07-14 21:43:19.787724', "price" = 16.0 WHERE "items"."id" = 22
+Redirected to http://localhost:3000/items
+Completed 302 Found in 12ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:43:19 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (45.5ms)
+Completed 200 OK in 53ms (Views: 48.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:43:21 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (6.5ms)
+Completed 200 OK in 15ms (Views: 10.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:43:25 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Cerveja", "price"=>"4", "list_id"=>"2"}}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "items" ("price", "name", "list_id", "updated_at", "created_at") VALUES (4.0, 'Cerveja', 2, '2011-07-14 21:43:25.746221', '2011-07-14 21:43:25.746221')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 10ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:43:25 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.3ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (61.0ms)
+Completed 200 OK in 69ms (Views: 64.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/items/new" for 127.0.0.1 at Thu Jul 14 22:43:26 +0100 2011
+  Processing by ItemsController#new as HTML
+  [1m[35mList Load (0.3ms)[0m  SELECT "lists".* FROM "lists"
+Rendered items/new.rhtml within layouts/application (6.6ms)
+Completed 200 OK in 15ms (Views: 10.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/items/create" for 127.0.0.1 at Thu Jul 14 22:43:35 +0100 2011
+  Processing by ItemsController#create as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "item"=>{"name"=>"Iron Maiden - Fear of the dark", "price"=>"17", "list_id"=>"2"}}
+  [1m[36mAREL (124.5ms)[0m  [1mINSERT INTO "items" ("list_id", "price", "name", "updated_at", "created_at") VALUES (2, 17.0, 'Iron Maiden - Fear of the dark', '2011-07-14 21:43:35.926697', '2011-07-14 21:43:35.926697')[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 179ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:43:36 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[35mItem Load (0.4ms)[0m  SELECT "items".* FROM "items" ORDER BY list_id
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1
+Rendered items/index.rhtml within layouts/application (16.4ms)
+Completed 200 OK in 25ms (Views: 20.0ms | ActiveRecord: 125.2ms)
+
+
+Started GET "/items/edit/22" for 127.0.0.1 at Thu Jul 14 22:43:39 +0100 2011
+  Processing by ItemsController#edit as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" WHERE (id=22) LIMIT 1[0m
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+DEPRECATION WARNING: Using form_for(:name, @resource) is deprecated. Please use form_for(@resource, :as => :name) instead. (called from _app_views_items_edit_rhtml___1544162212_2191995160_0 at /Users/CarlosRodrigues/Sites/lista_compras/app/views/items/edit.rhtml:4)
+Rendered items/edit.rhtml within layouts/application (11.5ms)
+Completed 200 OK in 55ms (Views: 15.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/items/update/22" for 127.0.0.1 at Thu Jul 14 22:43:47 +0100 2011
+  Processing by ItemsController#update as HTML
+  Parameters: {"commit"=>"Guardar", "authenticity_token"=>"8TyAW2K5HU/thay9F6fLi9UTGp1YTw2iiWYyiHwRAws=", "utf8"=>"✓", "id"=>"22", "item"=>{"name"=>"Led Zeppelin", "price"=>"15.0", "list_id"=>"3"}}
+  [1m[36mItem Load (0.1ms)[0m  [1mSELECT "items".* FROM "items" WHERE "items"."id" = 22 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "items" SET "price" = 15.0, "name" = 'Led Zeppelin', "updated_at" = '2011-07-14 21:43:47.723040' WHERE "items"."id" = 22
+Redirected to http://localhost:3000/items
+Completed 302 Found in 12ms
+
+
+Started GET "/items" for 127.0.0.1 at Thu Jul 14 22:43:47 +0100 2011
+  Processing by ItemsController#index as HTML
+  [1m[36mItem Load (0.3ms)[0m  [1mSELECT "items".* FROM "items" ORDER BY list_id[0m
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "lists".* FROM "lists" WHERE "lists"."id" = 2 LIMIT 1
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE "lists"."id" = 3 LIMIT 1[0m
+Rendered items/index.rhtml within layouts/application (16.4ms)
+Completed 200 OK in 68ms (Views: 63.3ms | ActiveRecord: 1.1ms)

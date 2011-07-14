@@ -1,0 +1,37 @@
+<h3><%= @title %></h3>
+
+<table border="1">
+	<tr>
+		<th>
+			Nome
+		</th>
+		<th>
+			Preço
+		</th>
+		<th>
+			Lista
+		</th>
+		<th>
+			
+		</th>
+	</tr>
+	<% @items.each do |item| %>
+		<tr>
+			<td>
+				<%= item.name%>
+			</td>
+			<td>
+				<%= item.price%>
+			</td>
+			<td>
+				<%= item.list.name%>
+			</td>
+			<td>
+				<a href="/items/edit/<%=item.id%>">Editar</a> <a href="/items/destroy/<%=item.id%>">Eliminar</a> 
+			</td>
+		</tr>
+	<%end%>
+
+</table>
+
+<a href="/items/new">Novo Item </a>

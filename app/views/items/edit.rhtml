@@ -1,0 +1,26 @@
+<h3><%= @title %></h3>
+
+
+<%= form_for :item, @item, :url => { :action => "update" ,:id=>@item.id} do |f| %>
+	Id:</br>
+	<%= f.text_field :id,:disabled => true %> <br/>
+	
+	
+	Nome:
+	<br/>
+	<%= f.text_field :name %> <br/>
+	
+	Preço:
+	<br/>
+	<%= f.text_field :price %> <br/>
+	
+	Lista:
+	<br />
+	<%= f.select (:list_id, @lists.collect { |lista| [lista.name, lista.id]}) %> <br/>
+	<%= submit_tag "Guardar" %>
+
+<% end %>
+
+
+<a href="/items/">Voltar</a>
+

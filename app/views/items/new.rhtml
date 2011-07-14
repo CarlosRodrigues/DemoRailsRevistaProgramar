@@ -1,0 +1,20 @@
+<h3><%= @title %></h3>
+
+<%= form_tag :action=> :create do %>
+	Nome:
+	<br/>
+	<%= text_field :item,:name %> <br/>
+	
+	Preço:
+	<br/>
+	<%= text_field :item,:price %> <br/>
+	
+	Lista:
+	<br />
+	<%= select (:item,:list_id,@lists.collect { |lista| [lista.name, lista.id]}) %> <br/>
+	<%= submit_tag "Guardar" %>
+
+<% end %>
+
+
+<a href="/items/">Voltar</a>
